@@ -1,0 +1,12 @@
+{
+  "name": "dm5-topic-list",
+  "version": "0.1.0",
+  "description": "A DeepaMehta 5 topic list as a composable GUI component",
+  "author": "Jörg Richter",
+  "license": "MIT",
+  "main": "src/components/dm5-topic-list.vue",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jri/dm5-topic-list.git"
+  }
+}
