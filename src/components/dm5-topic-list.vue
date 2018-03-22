@@ -12,9 +12,9 @@
           {{group.title}} <span class="count">({{group.topics.length}})</span>
         </div>
         <div>
-          <!-- Note: the same topic might be related more than once. In order to avoid a key clash we
-               use the relating assoc ID as key. (An alternative would be just using the loop index.) -->
-          <dm5-topic v-for="topic in group.topics" :topic="topic" :omit="omit" :key="topic.assoc.id"
+          <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
+               In order to avoid a key clash we use the loop index. -->
+          <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :key="i"
             @click.native="click(topic)">
           </dm5-topic>
         </div>
@@ -77,6 +77,7 @@ export default {
     },
 
     omit () {
+      // Note: dm5-topic expects a String (or undefined)
       if (!this.topicSort) {
         return this.sort
       }

@@ -1,11 +1,11 @@
 <template>
   <div class="dm5-topic">
-    <div class="type label" v-if="show('type')">{{topic.typeName}}</div>
+    <div class="type label" v-if="showType">{{topic.typeName}}</div>
     <div class="topic">
       <div class="icon">{{topic.getIcon()}}</div>
       <div>
         <div class="value">{{topic.value}}</div>
-        <div class="assoc label" v-if="show('assoc')">{{assoc}}</div>
+        <div class="assoc label" v-if="showAssoc">{{assoc}}</div>
       </div>
     </div>
   </div>
@@ -23,20 +23,23 @@ export default {
       required: true
     },
 
-    omit: String    // optional: part that is ommitted from rendering: "type", "assoc"
+    omit: String    // optional: part that is ommitted from rendering: 'type', 'assoc'
   },
 
   computed: {
+
+    showType () {
+      return this.omit !== 'type'
+    },
+
+    showAssoc () {
+      return this.omit !== 'assoc' && this.topic.assoc
+    },
+
     assoc () {
       const _value = this.topic.assoc.value
       const value = _value && `: ${_value}`
       return `${this.topic.assoc.typeName}${value}`
-    }
-  },
-
-  methods: {
-    show (part) {
-      return this.omit !== part
     }
   }
 }
