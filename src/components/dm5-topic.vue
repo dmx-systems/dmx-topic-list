@@ -54,7 +54,7 @@ export default {
 .dm5-topic .icon {
   font-family: FontAwesome;
   color: var(--color-topic-icon);
-  margin-right: 6px;
+  margin-right: 7px;
 }
 
 .dm5-topic .value {
@@ -62,10 +62,10 @@ export default {
 }
 
 .dm5-topic .type {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .dm5-topic .assoc {
-  margin-top: 8px;
+  margin-top: 6px;
 }
 </style>

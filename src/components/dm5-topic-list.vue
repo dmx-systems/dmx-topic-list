@@ -1,6 +1,6 @@
 <template>
   <div class="dm5-topic-list">
-    <div class="info field-label">{{resultLabel}}</div>
+    <div class="field-label">{{resultLabel}}</div>
     <template v-if="count">
       <el-select v-model="sort">
         <el-option label="Topic" value="topic"></el-option>
@@ -8,9 +8,9 @@
         <el-option label="Association Type" value="assoc" v-if="isRelTopics"></el-option>
       </el-select>
       <div class="groups">
-        <template v-for="group in groups">
-          <div class="title" v-if="!topicSort">
-            {{group.title}} <span class="count">({{group.topics.length}})</span>
+        <div class="group" v-for="group in groups">
+          <div class="field-label" v-if="!topicSort">
+            {{group.title}} ({{group.topics.length}})
           </div>
           <div>
             <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
@@ -19,7 +19,7 @@
               @click.native="click(topic)">
             </dm5-topic>
           </div>
-        </template>
+        </div>
       </div>
     </template>
   </div>
@@ -129,29 +129,19 @@ const selectFn = {
 </script>
 
 <style>
-.dm5-topic-list .info {
-  margin-top: 1em;
-}
-
 .dm5-topic-list .groups {
   margin-top: 2em;
 }
 
-.dm5-topic-list .groups .title {
-  margin-top: 1.8em;
-  margin-bottom: 1em;
-  font-weight: bold;
-}
-
-.dm5-topic-list .groups .title .count {
-  font-weight: initial;
+.dm5-topic-list .groups .group {
+  margin-top: 1.6em;
 }
 
 .dm5-topic-list .dm5-topic {
   border-bottom: 1px solid var(--border-color);
   background-color: white;
   transition: background-color 0.25s;
-  padding: 12px;
+  padding: 8px;
 }
 
 .dm5-topic-list .dm5-topic:nth-child(1) {
