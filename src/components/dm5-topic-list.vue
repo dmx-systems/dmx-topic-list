@@ -1,7 +1,7 @@
 <template>
   <div class="dm5-topic-list">
     <div class="field-label">{{resultLabel}}</div>
-    <template v-if="count">
+    <template v-if="size">
       <el-select v-model="sort">
         <el-option label="Topic" value="topic"></el-option>
         <el-option label="Topic Type" value="type"></el-option>
@@ -9,9 +9,7 @@
       </el-select>
       <div class="groups">
         <div class="group" v-for="group in groups">
-          <div class="field-label" v-if="!topicSort">
-            {{group.title}} ({{group.topics.length}})
-          </div>
+          <div class="field-label" v-if="!topicSort">{{group.title}} ({{group.topics.length}})</div>
           <div>
             <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
                  In order to avoid a key clash we use the loop index. -->
@@ -34,10 +32,15 @@ export default {
     // console.log('dm5-topic-list created')
   },
 
-  props: [
-    'topics',           // undefined is allowed
-    'emptyText'         // undefined is allowed
-  ],
+  props: {
+    topics: {
+      type: Array,
+      required: true
+    },
+    emptyText: {
+      type: String
+    }
+  },
 
   data () {
     return {
@@ -48,12 +51,12 @@ export default {
 
   computed: {
 
-    count () {
-      return this.topics && this.topics.length
+    size () {
+      return this.topics.length
     },
 
     resultLabel () {
-      return this.count ? `${this.count} Topics, sorted by` : this.emptyText || this.emptyTextDefault
+      return this.size ? `${this.size} Topics, sorted by` : this.emptyText || this.emptyTextDefault
     },
 
     isRelTopics () {
@@ -62,32 +65,30 @@ export default {
 
     groups () {
       const groups = []
-      if (this.topics) {
-        this.topics.sort(this.compareFn())
-        if (this.topicSort) {
-          groups.push({topics: this.topics})
-        } else {
-          const select = selectFn[this.sort]
-          let title   // current title
-          let group   // current group
-          this.topics.forEach(topic => {
-            const _title = startGroup()
-            if (_title) {
-              // start new group
-              title = _title
-              group = {title, topics: [topic]}
-              groups.push(group)
-            } else {
-              // append to current group
-              group.topics.push(topic)
-            }
+      this.topics.sort(this.compareFn())
+      if (this.topicSort) {
+        groups.push({topics: this.topics})
+      } else {
+        const select = selectFn[this.sort]
+        let title   // current title
+        let group   // current group
+        this.topics.forEach(topic => {
+          const _title = startGroup()
+          if (_title) {
+            // start new group
+            title = _title
+            group = {title, topics: [topic]}
+            groups.push(group)
+          } else {
+            // append to current group
+            group.topics.push(topic)
+          }
 
-            function startGroup () {
-              const _title = select(topic)
-              return _title !== title && _title
-            }
-          })
-        }
+          function startGroup () {
+            const _title = select(topic)
+            return _title !== title && _title
+          }
+        })
       }
       return groups
     },
