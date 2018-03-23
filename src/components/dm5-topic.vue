@@ -23,7 +23,7 @@ export default {
       required: true
     },
 
-    omit: String    // optional: part that is ommitted from rendering: 'type', 'assoc'
+    omit: String      // optional: the part that is ommitted from rendering: 'type', 'assoc'
   },
 
   computed: {

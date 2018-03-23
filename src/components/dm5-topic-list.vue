@@ -1,36 +1,48 @@
 <template>
   <div class="dm5-topic-list">
-    <div class="info field-label">{{count}} Topics, sorted by</div>
-    <el-select v-model="sort">
-      <el-option label="Topic" value="topic"></el-option>
-      <el-option label="Topic Type" value="type"></el-option>
-      <el-option label="Association Type" value="assoc"></el-option>
-    </el-select>
-    <div class="groups">
-      <template v-for="group in groups">
-        <div class="title" v-if="!topicSort">
-          {{group.title}} <span class="count">({{group.topics.length}})</span>
-        </div>
-        <div>
-          <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
-               In order to avoid a key clash we use the loop index. -->
-          <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :key="i"
-            @click.native="click(topic)">
-          </dm5-topic>
-        </div>
-      </template>
-    </div>
+    <div class="info field-label">{{resultLabel}}</div>
+    <template v-if="count">
+      <el-select v-model="sort">
+        <el-option label="Topic" value="topic"></el-option>
+        <el-option label="Topic Type" value="type"></el-option>
+        <el-option label="Association Type" value="assoc" v-if="isRelTopics"></el-option>
+      </el-select>
+      <div class="groups">
+        <template v-for="group in groups">
+          <div class="title" v-if="!topicSort">
+            {{group.title}} <span class="count">({{group.topics.length}})</span>
+          </div>
+          <div>
+            <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
+                 In order to avoid a key clash we use the loop index. -->
+            <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :key="i"
+              @click.native="click(topic)">
+            </dm5-topic>
+          </div>
+        </template>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
+import dm5 from 'dm5'
+
 export default {
 
-  props: ['topics'],    // undefined at creation
+  created () {
+    // console.log('dm5-topic-list created')
+  },
+
+  props: [
+    'topics',           // undefined is allowed
+    'emptyText'         // undefined is allowed
+  ],
 
   data () {
     return {
-      sort: 'type'      // selected sort mode: "topic", "type", "assoc"
+      sort: 'type',     // selected sort mode: 'topic', 'type', 'assoc'
+      emptyTextDefault: 'No Data'
     }
   },
 
@@ -38,6 +50,14 @@ export default {
 
     count () {
       return this.topics && this.topics.length
+    },
+
+    resultLabel () {
+      return this.count ? `${this.count} Topics, sorted by` : this.emptyText || this.emptyTextDefault
+    },
+
+    isRelTopics () {
+      return this.topics[0] instanceof dm5.RelatedTopic
     },
 
     groups () {
