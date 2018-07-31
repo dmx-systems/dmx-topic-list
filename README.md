@@ -2,6 +2,10 @@
 
 ## Version History
 
+**0.3** -- Jul 31, 2018
+
+* Add GitLab CI/CD
+
 **0.2** -- Mar 25, 2018
 
 * Renders plain `Topic`s as well (besides `RelatedTopic`s)
@@ -14,4 +18,4 @@
 
 ------------
 Jörg Richter  
-Mar 25, 2018
+Jul 31, 2018
