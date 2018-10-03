@@ -1,5 +1,5 @@
 <template>
-  <div class="dm5-topic">
+  <div :class="['dm5-topic', {marked}]">
     <div class="type label" v-if="showType">{{topic.typeName}}</div>
     <div class="topic">
       <div class="icon">{{topic.getIcon()}}</div>
@@ -17,13 +17,9 @@ import dm5 from 'dm5'
 export default {
 
   props: {
-
-    topic: {
-      type: dm5.Topic,
-      required: true
-    },
-
-    omit: String      // optional: the part that is ommitted from rendering: 'type', 'assoc'
+    topic: {type: dm5.Topic, required: true},
+    omit: String,     // optional: the part that is ommitted from rendering: 'type', 'assoc'
+    marked: Boolean   // optional: if truish the topic is rendered as "marked"
   },
 
   computed: {
@@ -46,6 +42,14 @@ export default {
 </script>
 
 <style>
+.dm5-topic {
+  border-right: 3px solid var(--border-color);
+}
+
+.dm5-topic.marked {
+  border-right: 3px solid var(--color-topic-icon);
+}
+
 .dm5-topic .topic {
   display: flex;
   align-items: baseline;

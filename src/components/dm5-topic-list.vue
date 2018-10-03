@@ -13,7 +13,7 @@
           <div>
             <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
                  In order to avoid a key clash we use the loop index. -->
-            <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :key="i"
+            <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :marked="marked(topic)" :key="i"
               @click.native="click(topic)">
             </dm5-topic>
           </div>
@@ -29,17 +29,13 @@ import dm5 from 'dm5'
 export default {
 
   created () {
-    // console.log('dm5-topic-list created')
+    // console.log('dm5-topic-list created', this.markerIds)
   },
 
   props: {
-    topics: {
-      type: Array,
-      required: true
-    },
-    emptyText: {
-      type: String
-    }
+    topics: {type: Array, required: true},
+    emptyText: String,
+    markerIds: Array    // IDs of topics to render as "marked"
   },
 
   data () {
@@ -110,6 +106,10 @@ export default {
     compareFn () {
       const select = selectFn[this.sort]
       return (t1, t2) => select(t1).localeCompare(select(t2))
+    },
+
+    marked (topic) {
+      return this.markerIds && this.markerIds.includes(topic.id)
     },
 
     click (topic) {
