@@ -8,14 +8,16 @@
 
 ## Properties
 
-|| Property  || Type                                                  || Required               || Description                                  ||
-|| topics    || Array of dm5.Topic or dm5.RelatedTopic, may be empty  || yes                    || Topics to render in the list                 ||
-|| emptyText || String                                                || no, default: "No Data" || Text to display when `topics` array is empty ||
+| Property  | Type                                                  | Required               | Description                                  |
+| --------  | ----                                                  | --------               | -----------                                  |
+| topics    | Array of dm5.Topic or dm5.RelatedTopic, may be empty  | yes                    | Topics to render in the list                 |
+| emptyText | String                                                | no, default: "No Data" | Text to display when `topics` array is empty |
 
 ## Events
 
-|| Event         || Description                              || Argument                                     ||
-|| `topic-click` || When the user clicks a topic in the list || The clicked topic, as in the `topics` array. ||
+| Event         | Description                              | Argument                                     |
+| -----         | -----------                              | --------                                     |
+| `topic-click` | When the user clicks a topic in the list | The clicked topic, as in the `topics` array. |
 
 ## Version History
 
