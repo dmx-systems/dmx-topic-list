@@ -21,9 +21,13 @@
 
 ## Version History
 
+**0.5** -- Oct 21, 2018
+
+* Fix: render Font Awesome icons with font-smoothing
+
 **0.4** -- Oct 6, 2018
 
-* New component property `markerIds` allows rendering certain topics as "marked"
+* Feature: new component property `markerIds` allows rendering certain topics as "marked"
 
 **0.3** -- Jul 31, 2018
 
@@ -41,4 +45,4 @@
 
 ------------
 Jörg Richter  
-Oct 6, 2018
+Oct 21, 2018
