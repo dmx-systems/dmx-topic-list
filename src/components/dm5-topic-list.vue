@@ -1,22 +1,20 @@
 <template>
   <div class="dm5-topic-list">
-    <div class="field-label">{{resultLabel}}</div>
+    <div class="field-label" v-if="!noSortMenu">{{sortLabel}}</div>
     <template v-if="size">
-      <el-select v-model="sort">
+      <el-select class="sort-menu" v-model="sort" v-if="!noSortMenu">
         <el-option label="Topic" value="topic"></el-option>
         <el-option label="Topic Type" value="type"></el-option>
         <el-option label="Association Type" value="assoc" v-if="isRelTopics"></el-option>
       </el-select>
-      <div class="groups">
-        <div class="group" v-for="group in groups">
-          <div class="field-label" v-if="!topicSort">{{group.title}} ({{group.topics.length}})</div>
-          <div>
-            <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
-                 In order to avoid a key clash we use the loop index. -->
-            <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :marked="marked(topic)" :key="i"
-              @click.native="click(topic)">
-            </dm5-topic>
-          </div>
+      <div class="group" v-for="group in groups">
+        <div class="field-label" v-if="!topicSort">{{group.title}} ({{group.topics.length}})</div>
+        <div>
+          <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
+               In order to avoid a key clash we use the loop index. -->
+          <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :marked="marked(topic)" :key="i"
+            @click.native="click(topic)">
+          </dm5-topic>
         </div>
       </div>
     </template>
@@ -33,7 +31,8 @@ export default {
   },
 
   props: {
-    topics: {type: Array, required: true},
+    topics: {type: Array, required: true},    // TODO: don't require?
+    noSortMenu: Boolean,
     emptyText: String,
     markerIds: Array    // IDs of topics to render as "marked"
   },
@@ -51,7 +50,7 @@ export default {
       return this.topics.length
     },
 
-    resultLabel () {
+    sortLabel () {
       return this.size ? `${this.size} Topics, sorted by` : this.emptyText || this.emptyTextDefault
     },
 
@@ -130,11 +129,11 @@ const selectFn = {
 </script>
 
 <style>
-.dm5-topic-list .groups {
-  margin-top: 2em;
+.dm5-topic-list .sort-menu {
+  margin-bottom: 2em;
 }
 
-.dm5-topic-list .groups .group {
+.dm5-topic-list .group + .group {
   margin-top: 1.6em;
 }
 
