@@ -21,13 +21,18 @@
 
 ## Version History
 
+**0.6** -- Nov 7, 2018
+
+* Improvement: new component attribute `no-sort-menu` allows hiding the sort menu
+* Fix: no endless recursion while calculating topic groups
+
 **0.5** -- Oct 21, 2018
 
 * Fix: render Font Awesome icons with font-smoothing
 
 **0.4** -- Oct 6, 2018
 
-* Feature: new component property `markerIds` allows rendering certain topics as "marked"
+* Feature: new component attribute `marker-ids` allows rendering certain topics as "marked"
 
 **0.3** -- Jul 31, 2018
 
@@ -45,4 +50,4 @@
 
 ------------
 Jörg Richter  
-Oct 21, 2018
+Nov 7, 2018
