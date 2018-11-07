@@ -60,14 +60,16 @@ export default {
 
     groups () {
       const groups = []
-      this.topics.sort(this.compareFn())
+      // Note: as "topics" is reactive state in-place sorting would trigger re-computation of "groups" ad infinitum
+      const _topics = this.topics.slice()   // shallow copy
+      _topics.sort(this.compareFn())        // in-place sort
       if (this.topicSort) {
-        groups.push({topics: this.topics})
+        groups.push({topics: _topics})
       } else {
         const select = selectFn[this.sort]
         let title   // current title
         let group   // current group
-        this.topics.forEach(topic => {
+        _topics.forEach(topic => {
           const _title = startGroup()
           if (_title) {
             // start new group
@@ -139,6 +141,7 @@ const selectFn = {
 
 .dm5-topic-list .dm5-topic {
   border-bottom: 1px solid var(--border-color);
+  border-left:   1px solid var(--border-color);
   background-color: white;
   transition: background-color 0.25s;
   padding: 8px;
