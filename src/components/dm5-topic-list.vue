@@ -62,7 +62,7 @@ export default {
       const groups = []
       // Note: as "topics" is reactive state in-place sorting would trigger re-computation of "groups" ad infinitum
       const _topics = this.topics.slice()   // shallow copy
-      _topics.sort(this.compareFn())        // in-place sort
+      _topics.sort(this.compareFn)          // in-place sort
       if (this.topicSort) {
         groups.push({topics: _topics})
       } else {
@@ -90,6 +90,15 @@ export default {
       return groups
     },
 
+    compareFn () {
+      const select = selectFn[this.sort]
+      return (t1, t2) => {
+        const v1 = select(t1)
+        const v2 = select(t2)
+        return v1 === v2 ? t1.value.localeCompare(t2.value) : v1.localeCompare(v2)
+      }
+    },
+
     topicSort () {
       return this.sort === 'topic'
     },
@@ -103,11 +112,6 @@ export default {
   },
 
   methods: {
-
-    compareFn () {
-      const select = selectFn[this.sort]
-      return (t1, t2) => select(t1).localeCompare(select(t2))
-    },
 
     marked (topic) {
       return this.markerIds && this.markerIds.includes(topic.id)
