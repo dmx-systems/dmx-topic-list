@@ -32,15 +32,14 @@ export default {
 
   props: {
     topics: {type: Array, required: true},    // TODO: don't require?
-    noSortMenu: Boolean,    // TODO: revise wording and semantics
-    noSort: Boolean,        // TODO: revise wording and semantics
+    noSortMenu: Boolean,
     emptyText: String,
-    markerIds: Array        // IDs of topics to render as "marked"
+    markerIds: Array      // IDs of topics to render as "marked"
   },
 
   data () {
     return {
-      sort: 'type',     // selected sort mode: 'topic', 'type', 'assoc'
+      sort: 'type',       // selected sort mode: 'topic', 'type', 'assoc'
       emptyTextDefault: 'No Data'
     }
   },
@@ -62,11 +61,13 @@ export default {
     groups () {
       const groups = []
       // Note: as "topics" is reactive state in-place sorting would trigger re-computation of "groups" ad infinitum
-      const _topics = this.topics.slice()           // shallow copy
-      !this.noSort && _topics.sort(this.compareFn)  // in-place sort
+      const _topics = this.topics.slice()   // shallow copy
+      _topics.sort(this.compareFn)          // in-place sort
       if (this.topicSort) {
+        // no grouping (put all topics in one group)
         groups.push({topics: _topics})
       } else {
+        // do grouping
         const select = selectFn[this.sort]
         let title   // current title
         let group   // current group
