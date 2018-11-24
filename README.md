@@ -21,6 +21,10 @@
 
 ## Version History
 
+**0.7** -- Nov 24, 2018
+
+* Fix: sort topics within groups
+
 **0.6** -- Nov 7, 2018
 
 * Improvement: new component attribute `no-sort-menu` allows hiding the sort menu
@@ -50,4 +54,4 @@
 
 ------------
 Jörg Richter  
-Nov 7, 2018
+Nov 24, 2018
