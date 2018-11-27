@@ -97,7 +97,14 @@ export default {
       return (t1, t2) => {
         const v1 = select(t1)
         const v2 = select(t2)
-        return v1 === v2 ? t1.value.localeCompare(t2.value) : v1.localeCompare(v2)
+        if (v1 === v2) {
+          // topics belong to same group -- compare topic values
+          return t1.value.localeCompare ? t1.value.localeCompare(t2.value) : t1.value - t2.value
+        } else {
+          // topic belong to different groups -- compare groups
+          return v1.localeCompare ? v1.localeCompare(v2) : v1 - v2
+        }
+        // Note: numbers and booleans does not have a "localeCompare" method
       }
     },
 
