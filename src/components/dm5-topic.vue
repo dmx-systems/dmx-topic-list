@@ -2,7 +2,7 @@
   <div :class="['dm5-topic', {marked}]">
     <div class="type label" v-if="showType">{{topic.typeName}}</div>
     <div class="topic">
-      <div class="fa icon">{{topic.getIcon()}}</div>
+      <div class="fa icon">{{topic.icon}}</div>
       <div>
         <div class="value">{{topic.value}}</div>
         <div class="assoc label" v-if="showAssoc">{{assoc}}</div>
@@ -57,7 +57,7 @@ export default {
 
 .dm5-topic .icon {
   color: var(--color-topic-icon);
-  margin-right: 7px;
+  margin-right: var(--icon-spacing);
 }
 
 .dm5-topic .value {
