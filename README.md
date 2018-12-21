@@ -21,6 +21,10 @@
 
 ## Version History
 
+**0.8** -- Dec 21, 2018
+
+* Fix sorting of number and boolean topic values
+
 **0.7** -- Nov 24, 2018
 
 * Fix: sort topics within groups
@@ -54,4 +58,4 @@
 
 ------------
 Jörg Richter  
-Nov 24, 2018
+Dec 21, 2018
