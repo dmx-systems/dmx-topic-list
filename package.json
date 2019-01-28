@@ -3,7 +3,7 @@
   "version": "0.8.0",
   "description": "A DeepaMehta 5 topic list as a composable GUI component",
   "author": "Jörg Richter",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "main": "src/components/dm5-topic-list.vue",
   "repository": {
     "type": "git",
