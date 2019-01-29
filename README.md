@@ -21,6 +21,10 @@
 
 ## Version History
 
+**0.9** -- Jan 29, 2019
+
+* Change license to `GPL-3.0-or-later`
+
 **0.8** -- Dec 21, 2018
 
 * Fix sorting of number and boolean topic values
@@ -58,4 +62,4 @@
 
 ------------
 Jörg Richter  
-Dec 21, 2018
+Jan 29, 2019
