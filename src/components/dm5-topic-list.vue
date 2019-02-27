@@ -27,11 +27,20 @@ import dm5 from 'dm5'
 export default {
 
   created () {
-    // console.log('dm5-topic-list created', this.markerIds)
+    // console.log('dm5-topic-list created', this.topics, this.topics.length)
   },
 
   props: {
-    topics: {type: Array, required: true},    // TODO: don't require?
+    topics: {
+      type: Array,
+      required: true,     // TODO: don't require?
+      validator: topics => topics.every(topic => {
+        const ok = topic instanceof dm5.Topic
+        !ok && console.warn('"topics" array passed to dm5-topic-list contains a non-topic element:', topic, '(' +
+          topic.constructor.name + ')')
+        return ok
+      })
+    },
     noSortMenu: Boolean,
     emptyText: String,
     markerIds: Array      // IDs of topics to render as "marked"
