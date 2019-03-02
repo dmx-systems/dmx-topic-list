@@ -21,6 +21,10 @@
 
 ## Version History
 
+**0.10** -- Mar 2, 2019
+
+* Add `topics` prop validator
+
 **0.9** -- Jan 29, 2019
 
 * Change license to `GPL-3.0-or-later`
@@ -62,4 +66,4 @@
 
 ------------
 Jörg Richter  
-Jan 29, 2019
+Mar 2, 2019
