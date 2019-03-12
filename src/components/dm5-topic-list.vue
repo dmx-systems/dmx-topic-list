@@ -12,8 +12,8 @@
         <div>
           <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
                In order to avoid a key clash we use the loop index. -->
-          <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :marked="marked(topic)" :key="i"
-            @click.native="click(topic)">
+          <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :class="{'marked': marked(topic)}"
+            :key="i" @click.native="click(topic)">
           </dm5-topic>
         </div>
       </div>
@@ -164,6 +164,7 @@ const selectFn = {
 .dm5-topic-list .dm5-topic {
   border-bottom: 1px solid var(--border-color);
   border-left:   1px solid var(--border-color);
+  border-right:  3px solid var(--border-color);
   background-color: white;
   transition: background-color 0.25s;
   padding: 8px;
@@ -171,6 +172,10 @@ const selectFn = {
 
 .dm5-topic-list .dm5-topic:nth-child(1) {
   border-top: 1px solid var(--border-color);
+}
+
+.dm5-topic-list .dm5-topic.marked {
+  border-right-color: var(--color-topic-icon);
 }
 
 .dm5-topic-list .dm5-topic:hover {
