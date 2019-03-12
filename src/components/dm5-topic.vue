@@ -2,7 +2,7 @@
   <div class="dm5-topic">
     <div class="type label" v-if="showType">{{topic.typeName}}</div>
     <div class="topic">
-      <div class="fa icon">{{topic.icon}}</div>
+      <div class="fa icon" @click.stop="clickIcon">{{topic.icon}}</div>
       <div>
         <div class="value">{{topic.value}}</div>
         <div class="assoc label" v-if="showAssoc">{{assoc}}</div>
@@ -36,6 +36,12 @@ export default {
       const value = _value && `: ${_value}`
       return `${this.topic.assoc.typeName}${value}`
     }
+  },
+
+  methods: {
+    clickIcon () {
+      this.$emit('icon-click')
+    }
   }
 }
 </script>
@@ -49,6 +55,10 @@ export default {
 .dm5-topic .icon {
   color: var(--color-topic-icon);
   margin-right: var(--icon-spacing);
+}
+
+.dm5-topic .icon:hover {
+  cursor: pointer;
 }
 
 .dm5-topic .value {

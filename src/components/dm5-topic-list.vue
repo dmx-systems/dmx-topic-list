@@ -13,7 +13,7 @@
           <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
                In order to avoid a key clash we use the loop index. -->
           <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :class="{'marked': marked(topic)}"
-            :key="i" @click.native="click(topic)">
+            :key="i" @click.native="click(topic)" @icon-click="iconClick(topic)">
           </dm5-topic>
         </div>
       </div>
@@ -137,6 +137,10 @@ export default {
 
     click (topic) {
       this.$emit('topic-click', topic)
+    },
+
+    iconClick (topic) {
+      this.$emit('icon-click', topic)
     }
   },
 
