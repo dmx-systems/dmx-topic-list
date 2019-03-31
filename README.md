@@ -21,6 +21,11 @@
 
 ## Version History
 
+**0.11** -- Apr 1, 2019
+
+* Emit `icon-click` event
+* Refactor component templates
+
 **0.10** -- Mar 2, 2019
 
 * Add `topics` prop validator
@@ -66,4 +71,4 @@
 
 ------------
 Jörg Richter  
-Mar 2, 2019
+Apr 1, 2019
