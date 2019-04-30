@@ -4,7 +4,7 @@
     <div class="topic">
       <div class="fa icon" @click.stop="clickIcon">{{topic.icon}}</div>
       <div>
-        <div class="value" v-if="isHtml" v-html="topic.value"></div>
+        <div class="value html" v-if="isHtml" v-html="topic.value"></div>
         <div class="value" v-else>{{topic.value}}</div>
         <div class="assoc label" v-if="showAssoc">{{assoc}}</div>
       </div>
@@ -68,6 +68,10 @@ export default {
 
 .dm5-topic .value {
   line-height: var(--line-height);
+}
+
+.dm5-topic .value.html img {
+  max-width: 100%;
 }
 
 .dm5-topic .type {
