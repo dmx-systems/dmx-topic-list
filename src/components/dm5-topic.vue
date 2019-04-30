@@ -4,7 +4,8 @@
     <div class="topic">
       <div class="fa icon" @click.stop="clickIcon">{{topic.icon}}</div>
       <div>
-        <div class="value">{{topic.value}}</div>
+        <div class="value" v-if="isHtml" v-html="topic.value"></div>
+        <div class="value" v-else>{{topic.value}}</div>
         <div class="assoc label" v-if="showAssoc">{{assoc}}</div>
       </div>
     </div>
@@ -29,6 +30,10 @@ export default {
 
     showAssoc () {
       return this.omit !== 'assoc' && this.topic.assoc
+    },
+
+    isHtml () {
+      return this.topic.getType().dataTypeUri === 'dmx.core.html'
     },
 
     assoc () {
