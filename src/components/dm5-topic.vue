@@ -2,7 +2,7 @@
   <div class="dm5-topic">
     <div class="type label" v-if="showType">{{topic.typeName}}</div>
     <div class="topic">
-      <div class="fa icon" @click.stop="clickIcon">{{topic.icon}}</div>
+      <div class="fa icon" :style="{color: topic.iconColor}" @click.stop="clickIcon">{{topic.icon}}</div>
       <div>
         <div class="value html" v-if="isHtml" v-html="topic.value"></div>
         <div class="value" v-else>{{topic.value}}</div>
@@ -58,7 +58,6 @@ export default {
 }
 
 .dm5-topic .icon {
-  color: var(--color-topic-icon);
   margin-right: var(--icon-spacing);
 }
 
