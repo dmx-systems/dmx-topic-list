@@ -33,7 +33,7 @@ export default {
     },
 
     isHtml () {
-      return this.topic.getType().dataTypeUri === 'dmx.core.html'
+      return this.topic.type.dataTypeUri === 'dmx.core.html'
     },
 
     assoc () {
