@@ -165,13 +165,14 @@ const selectFn = {
   margin-top: 1.6em;
 }
 
+/* copy in dm5-assoc-def-list.vue */
 .dm5-topic-list .dm5-topic {
   border-bottom: 1px solid var(--border-color);
   border-left:   1px solid var(--border-color);
   border-right:  3px solid var(--border-color);
   background-color: white;
   transition: background-color 0.25s;
-  padding: 8px;
+  padding: var(--object-item-padding);
 }
 
 .dm5-topic-list .dm5-topic:nth-child(1) {
