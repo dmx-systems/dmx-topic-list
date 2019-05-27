@@ -21,6 +21,14 @@
 
 ## Version History
 
+**0.12** -- May 27, 2019
+
+* Improvements:
+    * Render topic icons with configured color
+* Fixes:
+    * Render HTML topic values (instead displaying source)
+    * Add max-width to images embedded in HTML topic values
+
 **0.11** -- Apr 1, 2019
 
 * Emit `icon-click` event
@@ -71,4 +79,4 @@
 
 ------------
 Jörg Richter  
-Apr 1, 2019
+May 27, 2019
