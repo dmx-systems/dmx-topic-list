@@ -21,6 +21,12 @@
 
 ## Version History
 
+**0.13** -- Jul 22, 2019
+
+* Chore:
+    * Adapt "assoc def" -> "comp def" wording in messages
+    * Change license to `AGPL-3.0`
+
 **0.12** -- May 27, 2019
 
 * Improvements:
@@ -79,4 +85,4 @@
 
 ------------
 Jörg Richter  
-May 27, 2019
+Jul 22, 2019
