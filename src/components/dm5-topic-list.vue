@@ -2,7 +2,7 @@
   <div class="dm5-topic-list">
     <div class="field-label" v-if="!noSortMenu">{{sortLabel}}</div>
     <template v-if="size">
-      <el-select class="sort-menu" v-model="sort" v-if="!noSortMenu">
+      <el-select class="sort-menu" :value="sortMode" v-if="!noSortMenu" @input="sortChange">
         <el-option label="Topic" value="topic"></el-option>
         <el-option label="Topic Type" value="type"></el-option>
         <el-option label="Association Type" value="assoc" v-if="isRelTopics"></el-option>
@@ -41,6 +41,10 @@ export default {
         return ok
       })
     },
+    sortMode: {
+      type: String,
+      default: 'type'     // topic list sort mode: 'topic', 'type', 'assoc'
+    },
     noSortMenu: Boolean,
     emptyText: String,
     markerIds: Array      // IDs of topics to render as "marked"
@@ -48,7 +52,6 @@ export default {
 
   data () {
     return {
-      sort: 'type',       // selected sort mode: 'topic', 'type', 'assoc'
       emptyTextDefault: 'No Data'
     }
   },
@@ -77,7 +80,7 @@ export default {
         groups.push({topics: _topics})
       } else {
         // do grouping
-        const select = selectFn[this.sort]
+        const select = selectFn[this.sortMode]
         let title   // current title
         let group   // current group
         _topics.forEach(topic => {
@@ -102,7 +105,7 @@ export default {
     },
 
     compareFn () {
-      const select = selectFn[this.sort]
+      const select = selectFn[this.sortMode]
       return (t1, t2) => {
         const v1 = select(t1)
         const v2 = select(t2)
@@ -118,13 +121,13 @@ export default {
     },
 
     topicSort () {
-      return this.sort === 'topic'
+      return this.sortMode === 'topic'
     },
 
     omit () {
       // Note: dm5-topic expects a String (or undefined)
       if (!this.topicSort) {
-        return this.sort
+        return this.sortMode
       }
     }
   },
@@ -141,6 +144,10 @@ export default {
 
     iconClick (topic) {
       this.$emit('icon-click', topic)
+    },
+
+    sortChange (sortMode) {
+      this.$emit('sort-change', sortMode)
     }
   },
 
