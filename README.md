@@ -21,6 +21,12 @@
 
 ## Version History
 
+**0.14** -- Nov 21, 2019
+
+* Improvements:
+    * Add `sort-mode` component attribute to control sort mode (`topic`, `type`, `assoc`) from outside
+    * Emit `sort-change` event when user changes the sort mode
+
 **0.13** -- Jul 22, 2019
 
 * Chore:
@@ -85,4 +91,4 @@
 
 ------------
 Jörg Richter  
-Jul 22, 2019
+Nov 21, 2019
