@@ -1,4 +1,4 @@
-# DeepaMehta 5 Topic List
+# DMX 5 Topic List
 
 ## Example
 
@@ -23,6 +23,12 @@
 | `sort-change` | When the user changes the list sort mode      | The sort mode (string): 'topic', 'type', 'assoc' |
 
 ## Version History
+
+**1.0** -- Aug 5, 2020
+
+* Chore:
+    * Rename this package `dm5-inline-edit` -> `dmx-inline-edit`
+    * Extend README
 
 **0.14** -- Nov 21, 2019
 
@@ -94,4 +100,4 @@
 
 ------------
 Jörg Richter  
-Nov 21, 2019
+Aug 5, 2020
