@@ -27,7 +27,7 @@
 **1.0** -- Aug 5, 2020
 
 * Chore:
-    * Rename this package `dm5-inline-edit` -> `dmx-inline-edit`
+    * Rename this package `dm5-topic-list` -> `dmx-topic-list`
     * Extend README
 
 **0.14** -- Nov 21, 2019
