@@ -1,6 +1,6 @@
 {
   "name": "dmx-topic-list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A DMX 5 topic list as a composable GUI component",
   "author": "Jörg Richter <jri@dmx.berlin>",
   "license": "AGPL-3.0",
