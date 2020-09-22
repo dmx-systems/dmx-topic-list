@@ -2,7 +2,7 @@
   <div class="dm5-topic-list">
     <div class="field-label" v-if="!noSortMenu">{{sortLabel}}</div>
     <template v-if="size">
-      <el-select class="sort-menu" :value="sortMode" v-if="!noSortMenu" @input="sortChange">
+      <el-select class="sort-menu" v-model="sortMode_" v-if="!noSortMenu" @input="sortChange">
         <el-option label="Topic" value="topic"></el-option>
         <el-option label="Topic Type" value="type"></el-option>
         <el-option label="Association Type" value="assoc" v-if="isRelTopics"></el-option>
@@ -41,9 +41,9 @@ export default {
         return ok
       })
     },
-    sortMode: {
+    sortMode: {           // topic list sort mode: 'topic', 'type', 'assoc'
       type: String,
-      default: 'type'     // topic list sort mode: 'topic', 'type', 'assoc'
+      default: 'type'
     },
     noSortMenu: Boolean,
     emptyText: String,
@@ -52,6 +52,7 @@ export default {
 
   data () {
     return {
+      sortMode_: this.sortMode,
       emptyTextDefault: 'No Data'
     }
   },
@@ -80,7 +81,7 @@ export default {
         groups.push({topics: _topics})
       } else {
         // do grouping
-        const select = selectFn[this.sortMode]
+        const select = selectFn[this.sortMode_]
         let title   // current title
         let group   // current group
         _topics.forEach(topic => {
@@ -105,7 +106,7 @@ export default {
     },
 
     compareFn () {
-      const select = selectFn[this.sortMode]
+      const select = selectFn[this.sortMode_]
       return (t1, t2) => {
         const v1 = select(t1)
         const v2 = select(t2)
@@ -121,13 +122,13 @@ export default {
     },
 
     topicSort () {
-      return this.sortMode === 'topic'
+      return this.sortMode_ === 'topic'
     },
 
     omit () {
       // Note: dm5-topic expects a String (or undefined)
       if (!this.topicSort) {
-        return this.sortMode
+        return this.sortMode_
       }
     }
   },
