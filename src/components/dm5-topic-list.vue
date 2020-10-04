@@ -1,12 +1,17 @@
 <template>
   <div class="dm5-topic-list">
-    <div class="field-label" v-if="!noSortMenu">{{sortLabel}}</div>
+    <div class="header" v-if="!noSortMenu">
+      <div class="list-label label">{{listLabel}}</div>
+      <div class="sort-widget" v-if="size">
+        <span class="label">sort by</span>
+        <el-select v-model="sortMode_" @input="sortChange">
+          <el-option label="Topic" value="topic"></el-option>
+          <el-option label="Topic Type" value="type"></el-option>
+          <el-option label="Association Type" value="assoc" v-if="isRelTopics"></el-option>
+        </el-select>
+      </div>
+    </div>
     <template v-if="size">
-      <el-select class="sort-menu" v-model="sortMode_" v-if="!noSortMenu" @input="sortChange">
-        <el-option label="Topic" value="topic"></el-option>
-        <el-option label="Topic Type" value="type"></el-option>
-        <el-option label="Association Type" value="assoc" v-if="isRelTopics"></el-option>
-      </el-select>
       <div class="group" v-for="group in groups">
         <div class="field-label" v-if="!topicSort">{{group.title}} ({{group.topics.length}})</div>
         <div>
@@ -63,8 +68,8 @@ export default {
       return this.topics.length
     },
 
-    sortLabel () {
-      return this.size ? `${this.size} Topics, sorted by` : this.emptyText || this.emptyTextDefault
+    listLabel () {
+      return this.size ? `${this.size} Topics` : this.emptyText || this.emptyTextDefault
     },
 
     isRelTopics () {
@@ -165,8 +170,17 @@ const selectFn = {
 </script>
 
 <style>
-.dm5-topic-list .sort-menu {
-  margin-bottom: 2em;
+.dm5-topic-list .header {
+  display: flex;
+  align-items: baseline;
+}
+
+.dm5-topic-list .header .list-label {
+  flex: auto;
+}
+
+.dm5-topic-list .header .sort-widget {
+  margin-bottom: 1.6em;
 }
 
 .dm5-topic-list .group + .group {
