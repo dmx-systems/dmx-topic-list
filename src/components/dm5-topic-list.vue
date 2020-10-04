@@ -183,6 +183,12 @@ const selectFn = {
   margin-bottom: 1.6em;
 }
 
+.dm5-topic-list .header .sort-widget input {
+  font-size: var(--label-font-size) !important;
+  line-height: 24px;    /* was 28px */
+  height: 24px;         /* was 28px */
+}
+
 .dm5-topic-list .group + .group {
   margin-top: 1.6em;
 }
