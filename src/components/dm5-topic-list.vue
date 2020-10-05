@@ -190,13 +190,15 @@ const selectFn = {
 }
 
 .dm5-topic-list .header .sort-widget .el-input__inner {
-  color: var(--label-color);
-}
-
-.dm5-topic-list .header .sort-widget input {
   font-size: var(--label-font-size) !important;
   line-height: 24px;    /* was 28px */
   height: 24px;         /* was 28px */
+  color: var(--label-color);
+}
+
+.dm5-topic-list .header .sort-widget .el-select__caret {
+  font-size: var(--label-font-size);
+  line-height: 24px;    /* was 28px */
 }
 
 .dm5-topic-list .group + .group {
