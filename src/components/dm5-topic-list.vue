@@ -52,7 +52,7 @@ export default {
     },
     noSortMenu: Boolean,
     topicsLabel: String,
-    emptyText: String,
+    emptyText: String,    // TODO: rename to "emptyLabel"/"topicsLabelEmpty"?
     markerIds: Array      // IDs of topics to render as "marked"
   },
 
@@ -183,6 +183,14 @@ const selectFn = {
 
 .dm5-topic-list .header .sort-widget {
   margin-bottom: 1.6em;
+}
+
+.dm5-topic-list .header .sort-widget .el-select {
+  width: 140px;
+}
+
+.dm5-topic-list .header .sort-widget .el-input__inner {
+  color: var(--label-color);
 }
 
 .dm5-topic-list .header .sort-widget input {
