@@ -51,6 +51,7 @@ export default {
       default: 'type'
     },
     noSortMenu: Boolean,
+    topicsLabel: String,
     emptyText: String,
     markerIds: Array      // IDs of topics to render as "marked"
   },
@@ -69,7 +70,8 @@ export default {
     },
 
     listLabel () {
-      return this.size ? `${this.size} Topics` : this.emptyText || this.emptyTextDefault
+      return this.size ? `${this.topicsLabel ? this.topicsLabel + ': ' : ''}${this.size} Topics` :
+        this.emptyText || this.emptyTextDefault
     },
 
     isRelTopics () {
