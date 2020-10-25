@@ -18,9 +18,15 @@
           <template v-if="!isAssocResult">
             <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
                  In order to avoid a key clash we use the loop index. -->
-            <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :class="{'marked': marked(topic)}"
-              :key="i" @click.native="click(topic)" @icon-click="iconClick(topic)">
+            <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit"
+              :class="['list-item', {'marked': marked(topic)}]" :key="i"
+              @click.native="click(topic)" @icon-click="iconClick(topic)">
             </dm5-topic>
+          </template>
+          <template v-if="isAssocResult">
+            <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc"
+              :class="['list-item', {'marked': marked(assoc)}]" :key="assoc.id">
+            </dm5-assoc-item>
           </template>
         </div>
       </div>
@@ -170,7 +176,8 @@ export default {
   },
 
   components: {
-    'dm5-topic': require('./dm5-topic').default
+    'dm5-topic':      require('./dm5-topic').default,
+    'dm5-assoc-item': require('./dm5-assoc-item').default
   }
 }
 
@@ -216,7 +223,7 @@ const selectFn = {
 }
 
 /* copy in dm5-comp-def-list.vue */
-.dm5-topic-list .dm5-topic {
+.dm5-topic-list .group .list-item {
   border-bottom: 1px solid var(--border-color);
   border-left:   1px solid var(--border-color);
   border-right:  3px solid var(--border-color);
@@ -225,15 +232,15 @@ const selectFn = {
   padding: var(--object-item-padding);
 }
 
-.dm5-topic-list .dm5-topic:nth-child(1) {
+.dm5-topic-list .group .list-item:nth-child(1) {
   border-top: 1px solid var(--border-color);
 }
 
-.dm5-topic-list .dm5-topic.marked {
+.dm5-topic-list .group .list-item.marked {
   border-right-color: var(--color-topic-icon);
 }
 
-.dm5-topic-list .dm5-topic:hover {
+.dm5-topic-list .group .list-item:hover {
   background-color: var(--background-color-darker);
 }
 </style>
