@@ -223,6 +223,7 @@ const selectFn = {
 }
 
 /* copy in dm5-comp-def-list.vue */
+.dm5-topic-list .group .object,
 .dm5-topic-list .group .list-item {
   border-bottom: 1px solid var(--border-color);
   border-left:   1px solid var(--border-color);
@@ -232,14 +233,17 @@ const selectFn = {
   padding: var(--object-item-padding);
 }
 
+.dm5-topic-list .group .object,
 .dm5-topic-list .group .list-item:nth-child(1) {
   border-top: 1px solid var(--border-color);
 }
 
+.dm5-topic-list .group .object.marked,
 .dm5-topic-list .group .list-item.marked {
   border-right-color: var(--color-topic-icon);
 }
 
+.dm5-topic-list .group .object:hover,
 .dm5-topic-list .group .list-item:hover {
   background-color: var(--background-color-darker);
 }
