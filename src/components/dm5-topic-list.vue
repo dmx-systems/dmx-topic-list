@@ -15,11 +15,13 @@
       <div class="group" v-for="group in groups">
         <div class="field-label" v-if="!topicSort">{{group.title}} ({{group.topics.length}})</div>
         <div>
-          <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
-               In order to avoid a key clash we use the loop index. -->
-          <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :class="{'marked': marked(topic)}"
-            :key="i" @click.native="click(topic)" @icon-click="iconClick(topic)">
-          </dm5-topic>
+          <template v-if="!isAssocResult">
+            <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
+                 In order to avoid a key clash we use the loop index. -->
+            <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit" :class="{'marked': marked(topic)}"
+              :key="i" @click.native="click(topic)" @icon-click="iconClick(topic)">
+            </dm5-topic>
+          </template>
         </div>
       </div>
     </template>
@@ -40,8 +42,8 @@ export default {
       type: Array,
       required: true,     // TODO: don't require?
       validator: topics => topics.every(topic => {
-        const ok = topic instanceof dm5.Topic
-        !ok && console.warn('"topics" array passed to dm5-topic-list contains a non-topic element:', topic, '(' +
+        const ok = topic instanceof dm5.Topic || topic instanceof dm5.Assoc
+        !ok && console.warn('"topics" array passed to dm5-topic-list contains a non-Topic/Assoc element:', topic, '(' +
           topic.constructor.name + ')')
         return ok
       })
@@ -70,12 +72,20 @@ export default {
     },
 
     listLabel () {
-      return this.size ? `${this.topicsLabel ? this.topicsLabel + ': ' : ''}${this.size} Topics` :
+      return this.size ? `${this.topicsLabel ? this.topicsLabel + ': ' : ''}${this.size} ${this.resultLabel}` :
         this.emptyText || this.emptyTextDefault
     },
 
     isRelTopics () {
       return this.topics[0] instanceof dm5.RelatedTopic
+    },
+
+    isAssocResult () {
+      return this.topics[0] instanceof dm5.Assoc
+    },
+
+    resultLabel () {
+      return this.isAssocResult ? 'Associations' : 'Topics'
     },
 
     groups () {
