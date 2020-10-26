@@ -1,5 +1,7 @@
 <template>
-  <div class="dm5-assoc-line" :style="{'border-top-color': assoc.color}"></div>
+  <div class="dm5-assoc-line" :style="{'background-color': assoc.color}">
+    <div class="aux-node"></div>
+  </div>
 </template>
 
 <script>
@@ -14,7 +16,17 @@ export default {
 
 <style>
 .dm5-assoc-line {
-  border-top: 3px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3px;
   transform: rotate(-2deg);
+}
+
+.dm5-assoc-line .aux-node {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: inherit;
 }
 </style>
