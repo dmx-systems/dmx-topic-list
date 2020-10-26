@@ -26,7 +26,7 @@
           <template v-if="isAssocResult">
             <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc"
               :class="['list-item', {'marked': marked(assoc)}]" :key="assoc.id"
-              @click.native="assocClick(assoc)">
+              @click.native="assocClick(assoc)" @topic-click="topicClick" @icon-click="iconClick">
             </dm5-assoc-item>
           </template>
         </div>
