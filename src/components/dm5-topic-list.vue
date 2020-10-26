@@ -20,12 +20,13 @@
                  In order to avoid a key clash we use the loop index. -->
             <dm5-topic-item v-for="(topic, i) in group.topics" :topic="topic" :omit="omit"
               :class="['list-item', {'marked': marked(topic)}]" :key="i"
-              @click.native="click(topic)" @icon-click="iconClick(topic)">
+              @click.native="topicClick(topic)" @icon-click="iconClick(topic)">
             </dm5-topic-item>
           </template>
           <template v-if="isAssocResult">
             <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc"
-              :class="['list-item', {'marked': marked(assoc)}]" :key="assoc.id">
+              :class="['list-item', {'marked': marked(assoc)}]" :key="assoc.id"
+              @click.native="assocClick(assoc)">
             </dm5-assoc-item>
           </template>
         </div>
@@ -162,12 +163,16 @@ export default {
       return this.markerIds && this.markerIds.includes(topic.id)
     },
 
-    click (topic) {
+    topicClick (topic) {
       this.$emit('topic-click', topic)
     },
 
     iconClick (topic) {
       this.$emit('icon-click', topic)
+    },
+
+    assocClick (assoc) {
+      this.$emit('assoc-click', assoc)
     },
 
     sortChange (sortMode) {
