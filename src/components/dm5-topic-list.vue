@@ -18,10 +18,10 @@
           <template v-if="!isAssocResult">
             <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
                  In order to avoid a key clash we use the loop index. -->
-            <dm5-topic v-for="(topic, i) in group.topics" :topic="topic" :omit="omit"
+            <dm5-topic-item v-for="(topic, i) in group.topics" :topic="topic" :omit="omit"
               :class="['list-item', {'marked': marked(topic)}]" :key="i"
               @click.native="click(topic)" @icon-click="iconClick(topic)">
-            </dm5-topic>
+            </dm5-topic-item>
           </template>
           <template v-if="isAssocResult">
             <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc"
@@ -149,7 +149,7 @@ export default {
     },
 
     omit () {
-      // Note: dm5-topic expects a String (or undefined)
+      // Note: dm5-topic-item expects a String (or undefined)
       if (!this.topicSort) {
         return this.sortMode_
       }
@@ -176,7 +176,7 @@ export default {
   },
 
   components: {
-    'dm5-topic':      require('./dm5-topic').default,
+    'dm5-topic-item': require('./dm5-topic-item').default,
     'dm5-assoc-item': require('./dm5-assoc-item').default
   }
 }

@@ -1,8 +1,8 @@
 <template>
   <div class="dm5-assoc-item">
-    <dm5-topic :topic="assoc.player1.topic" class="object"></dm5-topic>
+    <dm5-topic-item :topic="assoc.player1.topic" class="object"></dm5-topic-item>
     <dm5-assoc-line :assoc="assoc"></dm5-assoc-line>
-    <dm5-topic :topic="assoc.player2.topic" class="object"></dm5-topic>
+    <dm5-topic-item :topic="assoc.player2.topic" class="object"></dm5-topic-item>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   },
 
   components: {
-    'dm5-topic': require('./dm5-topic').default,
+    'dm5-topic-item': require('./dm5-topic-item').default,
     'dm5-assoc-line': require('./dm5-assoc-line').default
   }
 }
