@@ -24,6 +24,14 @@
 
 ## Version History
 
+**1.0.2** -- Oct 27, 2020
+
+* Improvements:
+    * Add `topics-label` component attribute to control list heading
+    * The *sort menu* is right aligned and smaller
+* Fixes:
+    * Changing sort mode when `sortMode` state lives outside dm5-topic-list instance
+
 **1.0.1** -- Aug 5, 2020
 
 * Fix imports
@@ -104,4 +112,4 @@
 
 ------------
 Jörg Richter  
-Aug 5, 2020
+Oct 27, 2020
