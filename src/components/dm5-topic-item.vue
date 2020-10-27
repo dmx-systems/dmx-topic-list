@@ -1,5 +1,5 @@
 <template>
-  <div class="dm5-topic">
+  <div class="dm5-topic-item">
     <div class="type label" v-if="showType">{{topic.typeName}}</div>
     <div class="topic">
       <div class="fa icon" :style="{color: topic.iconColor}" @click.stop="clickIcon">{{topic.icon}}</div>
@@ -52,32 +52,32 @@ export default {
 </script>
 
 <style>
-.dm5-topic .topic {
+.dm5-topic-item .topic {
   display: flex;
   align-items: baseline;
 }
 
-.dm5-topic .icon {
+.dm5-topic-item .icon {
   margin-right: var(--icon-spacing);
 }
 
-.dm5-topic .icon:hover {
+.dm5-topic-item .icon:hover {
   cursor: pointer;
 }
 
-.dm5-topic .value {
+.dm5-topic-item .value {
   line-height: var(--line-height);
 }
 
-.dm5-topic .value.html img {
+.dm5-topic-item .value.html img {
   max-width: 100%;
 }
 
-.dm5-topic .type {
+.dm5-topic-item .type {
   margin-bottom: 6px;
 }
 
-.dm5-topic .assoc {
+.dm5-topic-item .assoc {
   margin-top: 6px;
 }
 </style>
