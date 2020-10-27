@@ -16,17 +16,26 @@
         <div class="field-label" v-if="!topicSort">{{group.title}} ({{group.topics.length}})</div>
         <div>
           <template v-if="!isAssocResult">
-            <!-- Note: the same topic might appear more than once (e.g. in a "what's related" list).
-                 In order to avoid a key clash we use the loop index. -->
+            <!--
+              Note: the same topic might appear more than once (e.g. in a "what's related" list).
+              In order to avoid a key clash we use the loop index. ### FIXME
+            -->
             <dm5-topic-item v-for="(topic, i) in group.topics" :topic="topic" :omit="omit"
               :class="['list-item', {'marked': marked(topic)}]" :key="i"
               @click.native="topicClick(topic)" @icon-click="iconClick(topic)">
             </dm5-topic-item>
           </template>
           <template v-if="isAssocResult">
+            <!--
+              Note: assoc-item has nested topic-items, all are hoverable, and we want the assoc-hover to disappear as
+              soon as a topic-item becomes hovered. So in contrast to topic-hovering, assoc-hovering can't rely solely
+              on CSS. We need handling of mouseover/out events. With CSS alone the assoc would stay hovered even when
+              the mouse cursor actually hovers a player topic.
+            -->
             <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc"
               :class="['list-item', {'marked': marked(assoc)}]" :key="assoc.id"
-              @click.native="assocClick(assoc)" @topic-click="topicClick" @icon-click="iconClick">
+              @mouseover.native="mouseover" @mouseout.native="mouseout" @click.native="assocClick(assoc)"
+              @topic-click="topicClick" @icon-click="iconClick">
             </dm5-assoc-item>
           </template>
         </div>
@@ -159,6 +168,14 @@ export default {
 
   methods: {
 
+    mouseover (e) {
+      setHover(true, e)
+    },
+
+    mouseout (e) {
+      setHover(false, e)
+    },
+
     marked (topic) {
       return this.markerIds && this.markerIds.includes(topic.id)
     },
@@ -190,6 +207,12 @@ const selectFn = {
   topic: topic => topic.value,
   type:  topic => topic.typeName,
   assoc: topic => topic.assoc.typeName
+}
+
+function setHover(hover, e) {
+  if (e.target.classList.contains('dm5-assoc-item')) {
+    e.target.__vue__.hover = hover
+  }
 }
 </script>
 
@@ -227,9 +250,9 @@ const selectFn = {
   margin-top: 1.6em;
 }
 
-/* copy in dm5-comp-def-list.vue */
-.dm5-topic-list .group .object,
-.dm5-topic-list .group .list-item {
+/* principle copy in dm5-comp-def-list.vue */
+.dm5-topic-list .group .dm5-topic-item,
+.dm5-topic-list .group .dm5-assoc-item {
   border-bottom: 1px solid var(--border-color);
   border-left:   1px solid var(--border-color);
   border-right:  3px solid var(--border-color);
@@ -238,18 +261,18 @@ const selectFn = {
   padding: var(--object-item-padding);
 }
 
-.dm5-topic-list .group .object,
+.dm5-topic-list .group .free-item,
 .dm5-topic-list .group .list-item:nth-child(1) {
   border-top: 1px solid var(--border-color);
 }
 
-.dm5-topic-list .group .object.marked,
-.dm5-topic-list .group .list-item.marked {
+.dm5-topic-list .group .dm5-topic-item.marked,
+.dm5-topic-list .group .dm5-assoc-item.marked {
   border-right-color: var(--color-topic-icon);
 }
 
-.dm5-topic-list .group .object:hover,
-.dm5-topic-list .group .list-item:hover {
+.dm5-topic-list .group .dm5-topic-item:hover,
+.dm5-topic-list .group .dm5-assoc-item.hover {    /* assoc-item hovering is different, see note in template */
   background-color: var(--background-color-darker);
 }
 </style>
