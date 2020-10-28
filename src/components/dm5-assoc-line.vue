@@ -50,6 +50,7 @@ function roleTypeLabel (player) {
   flex-direction: column;
   height: 3px;
   transform: rotate(-2deg);
+  pointer-events: none;
 }
 
 .dm5-assoc-line .value {
