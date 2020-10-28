@@ -57,7 +57,7 @@ export default {
   props: {
     topics: {
       type: Array,
-      required: true,     // TODO: don't require?
+      required: true,       // TODO: don't require?
       validator: topics => topics.every(topic => {
         const ok = topic instanceof dm5.Topic || topic instanceof dm5.Assoc
         !ok && console.warn('"topics" array passed to dm5-topic-list contains a non-Topic/Assoc element:', topic, '(' +
@@ -65,14 +65,14 @@ export default {
         return ok
       })
     },
-    sortMode: {           // topic list sort mode: 'topic', 'type', 'assoc'
+    sortMode: {             // topic list sort mode: 'topic', 'type', 'assoc'
       type: String,
       default: 'type'
     },
     noSortMenu: Boolean,
     topicsLabel: String,
-    emptyText: String,    // TODO: rename to "emptyLabel"/"topicsLabelEmpty"?
-    markerIds: Array      // IDs of topics to render as "marked"
+    emptyText: String,      // TODO: rename to "emptyLabel"/"topicsLabelEmpty"?
+    markerTopicIds: Array   // IDs of topics to render as "marked"
   },
 
   data () {
@@ -186,7 +186,7 @@ export default {
     },
 
     marked (topic) {
-      return this.markerIds && this.markerIds.includes(topic.id)
+      return this.markerTopicIds && this.markerTopicIds.includes(topic.id)
     },
 
     topicClick (topic) {
