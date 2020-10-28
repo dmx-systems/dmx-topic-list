@@ -3,7 +3,7 @@
     <dm5-topic-item :topic="topic1" class="free-item"
       @click.native.stop="topicClick(topic1)" @icon-click="iconClick(topic1)">
     </dm5-topic-item>
-    <dm5-assoc-line :assoc="assoc"></dm5-assoc-line>
+    <dm5-assoc-line :assoc="assoc" :show-labels="showLabels"></dm5-assoc-line>
     <dm5-topic-item :topic="topic2" class="free-item"
       @click.native.stop="topicClick(topic2)" @icon-click="iconClick(topic2)">
     </dm5-topic-item>
@@ -21,7 +21,8 @@ export default {
 
   data () {
     return {
-      hover: false
+      hover: false,
+      showLabels: false
     }
   },
 

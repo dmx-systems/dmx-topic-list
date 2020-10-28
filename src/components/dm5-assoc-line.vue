@@ -1,10 +1,12 @@
 <template>
   <div class="dm5-assoc-line" :style="lineStyle">
-    <div class="value label">{{assoc.value || '&nbsp;'}}</div>
     <div class="aux-node" :style="lineStyle">&nbsp;</div>
-    <div class="role-types">
-      <div class="label">{{roleType1}}</div>
-      <div class="label">{{roleType2}}</div>
+    <div class="labels" v-show="showLabels">
+      <div class="value label">{{assoc.value || '&nbsp;'}}</div>
+      <div class="role-types">
+        <div class="label">{{roleType1}}</div>
+        <div class="label">{{roleType2}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -15,7 +17,8 @@ import dm5 from 'dmx-api'
 export default {
 
   props: {
-    assoc: {type: dm5.Assoc, required: true}
+    assoc: {type: dm5.Assoc, required: true},
+    showLabels: Boolean
   },
 
   computed: {
@@ -51,7 +54,11 @@ function roleTypeLabel (player) {
 
 .dm5-assoc-line .value {
   text-align: center;
-  margin-top: -20px;
+  margin-top: -24px;
+}
+
+.dm5-assoc-line .role-types {
+  margin-top: 9px;
 }
 
 .dm5-assoc-line .aux-node {
@@ -59,8 +66,7 @@ function roleTypeLabel (player) {
   width: 6px;
   height: 6px;
   border-radius: 3px;
-  margin-top: 3px;
-  margin-bottom: 2px;
+  margin-top: -1px;
 }
 
 .dm5-assoc-line .role-types {

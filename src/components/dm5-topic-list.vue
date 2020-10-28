@@ -34,8 +34,9 @@
             -->
             <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc"
               :class="['list-item', {'marked': marked(assoc)}]" :key="assoc.id"
-              @mouseover.native="mouseover" @mouseout.native="mouseout" @click.native="assocClick(assoc)"
-              @topic-click="topicClick" @icon-click="iconClick">
+              @mouseover.native="mouseover" @mouseout.native="mouseout"
+              @mouseenter.native="mouseenter" @mouseleave.native="mouseleave"
+              @click.native="assocClick(assoc)" @topic-click="topicClick" @icon-click="iconClick">
             </dm5-assoc-item>
           </template>
         </div>
@@ -169,11 +170,19 @@ export default {
   methods: {
 
     mouseover (e) {
-      setHover(true, e)
+      setProperty('hover', true, e)
     },
 
     mouseout (e) {
-      setHover(false, e)
+      setProperty('hover', false, e)
+    },
+
+    mouseenter (e) {
+      setProperty('showLabels', true, e)
+    },
+
+    mouseleave (e) {
+      setProperty('showLabels', false, e)
     },
 
     marked (topic) {
@@ -209,9 +218,9 @@ const selectFn = {
   assoc: topic => topic.assoc.typeName
 }
 
-function setHover(hover, e) {
+function setProperty(prop, value, e) {
   if (e.target.classList.contains('dm5-assoc-item')) {
-    e.target.__vue__.hover = hover
+    e.target.__vue__[prop] = value
   }
 }
 </script>
