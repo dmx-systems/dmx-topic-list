@@ -58,10 +58,6 @@ function roleTypeLabel (player) {
   margin-top: -24px;
 }
 
-.dm5-assoc-line .role-types {
-  margin-top: 9px;
-}
-
 .dm5-assoc-line .aux-node {
   align-self: center;
   width: 6px;
@@ -72,6 +68,7 @@ function roleTypeLabel (player) {
 
 .dm5-assoc-line .role-types {
   display: flex;
+  margin-top: 9px;
 }
 
 .dm5-assoc-line .role-types div {

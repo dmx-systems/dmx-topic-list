@@ -21,7 +21,7 @@
               In order to avoid a key clash we use the loop index. ### FIXME
             -->
             <dm5-topic-item v-for="(topic, i) in group.topics" :topic="topic" :omit="omit"
-              :class="['list-item', {'marked': marked(topic)}]" :key="i"
+              :class="['list-item', {'marked': markTopic(topic)}]" :key="i"
               @click.native="topicClick(topic)" @icon-click="iconClick(topic)">
             </dm5-topic-item>
           </template>
@@ -33,7 +33,7 @@
               the mouse cursor actually hovers a player topic.
             -->
             <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc"
-              :class="['list-item', {'marked': marked(assoc)}]" :key="assoc.id"
+              :class="['list-item', {'marked': markAssoc(assoc)}]" :key="assoc.id"
               @mouseover.native="mouseover" @mouseout.native="mouseout"
               @mouseenter.native="mouseenter" @mouseleave.native="mouseleave"
               @click.native="assocClick(assoc)" @topic-click="topicClick" @icon-click="iconClick">
@@ -57,7 +57,7 @@ export default {
   props: {
     topics: {
       type: Array,
-      required: true,       // TODO: don't require?
+      required: true,         // TODO: don't require?
       validator: topics => topics.every(topic => {
         const ok = topic instanceof dm5.Topic || topic instanceof dm5.Assoc
         !ok && console.warn('"topics" array passed to dm5-topic-list contains a non-Topic/Assoc element:', topic, '(' +
@@ -65,14 +65,15 @@ export default {
         return ok
       })
     },
-    sortMode: {             // topic list sort mode: 'topic', 'type', 'assoc'
+    sortMode: {               // topic list sort mode: 'topic', 'type', 'assoc'
       type: String,
       default: 'type'
     },
     noSortMenu: Boolean,
     topicsLabel: String,
-    emptyText: String,      // TODO: rename to "emptyLabel"/"topicsLabelEmpty"?
-    markerTopicIds: Array   // IDs of topics to render as "marked"
+    emptyText: String,        // TODO: rename to "emptyLabel"/"topicsLabelEmpty"?
+    markerTopicIds: Array,    // IDs of topics to render as "marked"
+    markerAssocIds: Array     // IDs of assocs to render as "marked"
   },
 
   data () {
@@ -185,8 +186,12 @@ export default {
       setProperty('showLabels', false, e)
     },
 
-    marked (topic) {
+    markTopic (topic) {
       return this.markerTopicIds && this.markerTopicIds.includes(topic.id)
+    },
+
+    markAssoc (assoc) {
+      return this.markerAssocIds && this.markerAssocIds.includes(assoc.id)
     },
 
     topicClick (topic) {
