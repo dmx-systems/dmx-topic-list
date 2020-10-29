@@ -5,8 +5,8 @@
       <div class="sort-widget" v-if="size">
         <span class="label">sort by</span>
         <el-select v-model="sortMode_" @input="sortChange">
-          <el-option label="Topic" value="topic"></el-option>
-          <el-option label="Topic Type" value="type"></el-option>
+          <el-option label="Topic" value="topic" v-if="!isAssocResult"></el-option>
+          <el-option :label="typeSortLabel" value="type"></el-option>
           <el-option label="Association Type" value="assoc" v-if="isRelTopics"></el-option>
         </el-select>
       </div>
@@ -108,6 +108,10 @@ export default {
       return this.isAssocResult ? 'Associations' : 'Topics'
     },
 
+    typeSortLabel () {
+      return this.isAssocResult ? 'Association Type' : 'Topic Type'
+    },
+
     groups () {
       const groups = []
       // Note: as "topics" is reactive state in-place sorting would trigger re-computation of "groups" ad infinitum
@@ -166,6 +170,15 @@ export default {
       // Note: dm5-topic-item expects a String (or undefined)
       if (!this.topicSort) {
         return this.sortMode_
+      }
+    }
+  },
+
+  watch: {
+    isAssocResult (val) {
+      console.log('isAssocResult', val)
+      if (val) {
+        this.sortMode_ = 'type'
       }
     }
   },
