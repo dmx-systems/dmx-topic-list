@@ -32,7 +32,7 @@
               on CSS. We need handling of mouseover/out events. With CSS alone the assoc would stay hovered even when
               the mouse cursor actually hovers a player topic.
             -->
-            <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc"
+            <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc" :marker-topic-ids="markerTopicIds"
               :class="['list-item', {'marked': markAssoc(assoc)}]" :key="assoc.id"
               @mouseover.native="mouseover" @mouseout.native="mouseout"
               @mouseenter.native="mouseenter" @mouseleave.native="mouseleave"
@@ -54,10 +54,14 @@ export default {
     // console.log('dm5-topic-list created', this.topics, this.topics.length)
   },
 
+  mixins: [
+    require('./mixins/marker').default
+  ],
+
   props: {
     topics: {
       type: Array,
-      required: true,         // TODO: don't require?
+      required: true,       // TODO: don't require?
       validator: topics => topics.every(topic => {
         const ok = topic instanceof dm5.Topic || topic instanceof dm5.Assoc
         !ok && console.warn('"topics" array passed to dm5-topic-list contains a non-Topic/Assoc element:', topic, '(' +
@@ -65,15 +69,13 @@ export default {
         return ok
       })
     },
-    sortMode: {               // topic list sort mode: 'topic', 'type', 'assoc'
+    sortMode: {             // topic list sort mode: 'topic', 'type', 'assoc'
       type: String,
       default: 'type'
     },
     noSortMenu: Boolean,
     topicsLabel: String,
-    emptyText: String,        // TODO: rename to "emptyLabel"/"topicsLabelEmpty"?
-    markerTopicIds: Array,    // IDs of topics to render as "marked"
-    markerAssocIds: Array     // IDs of assocs to render as "marked"
+    emptyText: String       // TODO: rename to "emptyLabel"/"topicsLabelEmpty"?
   },
 
   data () {
@@ -184,14 +186,6 @@ export default {
 
     mouseleave (e) {
       setProperty('showLabels', false, e)
-    },
-
-    markTopic (topic) {
-      return this.markerTopicIds && this.markerTopicIds.includes(topic.id)
-    },
-
-    markAssoc (assoc) {
-      return this.markerAssocIds && this.markerAssocIds.includes(assoc.id)
     },
 
     topicClick (topic) {

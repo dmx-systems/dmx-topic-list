@@ -1,10 +1,10 @@
 <template>
   <div :class="['dm5-assoc-item', {hover}]">
-    <dm5-topic-item :topic="topic1" class="free-item"
+    <dm5-topic-item :topic="topic1" :class="['free-item', {'marked': markTopic(topic1)}]"
       @click.native.stop="topicClick(topic1)" @icon-click="iconClick(topic1)">
     </dm5-topic-item>
     <dm5-assoc-line :assoc="assoc" :show-labels="showLabels"></dm5-assoc-line>
-    <dm5-topic-item :topic="topic2" class="free-item"
+    <dm5-topic-item :topic="topic2" :class="['free-item', {'marked': markTopic(topic2)}]"
       @click.native.stop="topicClick(topic2)" @icon-click="iconClick(topic2)">
     </dm5-topic-item>
   </div>
@@ -15,14 +15,18 @@ import dm5 from 'dmx-api'
 
 export default {
 
+  mixins: [
+    require('./mixins/marker').default
+  ],
+
   props: {
     assoc: {type: dm5.Assoc, required: true}
   },
 
   data () {
     return {
-      hover: false,
-      showLabels: false
+      hover: false,       // set by parent component, see setProperty() in dm5-topic-list.vue
+      showLabels: false   // set by parent component, see setProperty() in dm5-topic-list.vue
     }
   },
 
