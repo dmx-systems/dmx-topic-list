@@ -21,7 +21,7 @@
               In order to avoid a key clash we use the loop index. ### FIXME
             -->
             <dm5-topic-item v-for="(topic, i) in group.topics" :topic="topic" :omit="omit"
-              :class="['list-item', {'marked': markTopic(topic)}]" :key="i"
+              :class="['list-item', {marked: markTopic(topic)}]" :key="i"
               @click.native="topicClick(topic)" @icon-click="iconClick(topic)">
             </dm5-topic-item>
           </template>
@@ -33,7 +33,7 @@
               the mouse cursor actually hovers a player topic.
             -->
             <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc" :marker-topic-ids="markerTopicIds"
-              :class="['list-item', {'marked': markAssoc(assoc)}]" :key="assoc.id"
+              :class="['list-item', {marked: markAssoc(assoc)}]" :key="assoc.id"
               @mouseover.native="mouseover" @mouseout.native="mouseout"
               @mouseenter.native="mouseenter" @mouseleave.native="mouseleave"
               @click.native="assocClick(assoc)" @topic-click="topicClick" @icon-click="iconClick">
@@ -281,6 +281,6 @@ function setProperty(prop, value, e) {
 
 .dm5-topic-list .group .dm5-topic-item:hover,
 .dm5-topic-list .group .dm5-assoc-item.hover {    /* assoc-item hovering is different, see note in template */
-  background-color: var(--background-color-darker);
+  background-color: var(--background-color-darker) !important;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div :class="['dm5-assoc-item', {hover}]">
-    <dm5-topic-item :topic="topic1" :class="['free-item', {'marked': markTopic(topic1)}]"
+    <dm5-topic-item :topic="topic1" :class="['free-item', {marked: markTopic(topic1), match: isMatch(topic1)}]"
       @click.native.stop="topicClick(topic1)" @icon-click="iconClick(topic1)">
     </dm5-topic-item>
     <dm5-assoc-line :assoc="assoc" :show-labels="showLabels"></dm5-assoc-line>
-    <dm5-topic-item :topic="topic2" :class="['free-item', {'marked': markTopic(topic2)}]"
+    <dm5-topic-item :topic="topic2" :class="['free-item', {marked: markTopic(topic2), match: isMatch(topic2)}]"
       @click.native.stop="topicClick(topic2)" @icon-click="iconClick(topic2)">
     </dm5-topic-item>
   </div>
@@ -14,6 +14,10 @@
 import dm5 from 'dmx-api'
 
 export default {
+
+  created () {
+    // console.log('dm5-assoc-item created', this.topic1, this.topic2)
+  },
 
   mixins: [
     require('./mixins/marker').default
@@ -43,6 +47,11 @@ export default {
 
   methods: {
 
+    isMatch (topic) {
+      const isMatch = topic.children['dmx.core.is_match']
+      return isMatch && isMatch.value
+    },
+
     topicClick (topic) {
       this.$emit('topic-click', topic)
     },
@@ -63,6 +72,10 @@ export default {
 .dm5-assoc-item {
   display: flex;
   align-items: center;
+}
+
+.dm5-assoc-item .dm5-topic-item.match {
+  background-color: var(--background-color) !important;
 }
 
 .dm5-assoc-item .dm5-assoc-line {
