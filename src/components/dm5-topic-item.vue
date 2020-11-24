@@ -17,6 +17,17 @@ import dm5 from 'dmx-api'
 
 export default {
 
+  mounted () {
+    // console.log('dm5-topic-item mouted', this.topic)
+    if (this.isHtml) {
+      this.$el.querySelectorAll('video.ql-video').forEach(video => {
+        video.addEventListener('click', e => {
+          e.stopPropagation()     // prevent parent from emitting 'topic-click' event
+        })
+      })
+    }
+  },
+
   props: {
     topic: {type: dm5.Topic, required: true},
     omit: String      // optional: the part that is ommitted from rendering: 'type', 'assoc'
