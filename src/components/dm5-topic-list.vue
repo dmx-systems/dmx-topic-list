@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import dm5 from 'dmx-api'
+import dmx from 'dmx-api'
 
 export default {
 
@@ -63,7 +63,7 @@ export default {
       type: Array,
       required: true,       // TODO: don't require?
       validator: topics => topics.every(topic => {
-        const ok = topic instanceof dm5.Topic || topic instanceof dm5.Assoc
+        const ok = topic instanceof dmx.Topic || topic instanceof dmx.Assoc
         !ok && console.warn('"topics" array passed to dm5-topic-list contains a non-Topic/Assoc element:', topic, '(' +
           topic.constructor.name + ')')
         return ok
@@ -97,11 +97,11 @@ export default {
     },
 
     isRelTopics () {
-      return this.topics[0] instanceof dm5.RelatedTopic
+      return this.topics[0] instanceof dmx.RelatedTopic
     },
 
     isAssocResult () {
-      return this.topics[0] instanceof dm5.Assoc
+      return this.topics[0] instanceof dmx.Assoc
     },
 
     resultLabel () {

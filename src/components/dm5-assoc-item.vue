@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import dm5 from 'dmx-api'
+import dmx from 'dmx-api'
 
 export default {
 
@@ -24,7 +24,7 @@ export default {
   ],
 
   props: {
-    assoc: {type: dm5.Assoc, required: true}
+    assoc: {type: dmx.Assoc, required: true}
   },
 
   data () {

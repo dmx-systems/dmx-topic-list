@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import dm5 from 'dmx-api'
+import dmx from 'dmx-api'
 
 export default {
 
@@ -29,7 +29,7 @@ export default {
   },
 
   props: {
-    topic: {type: dm5.Topic, required: true},
+    topic: {type: dmx.Topic, required: true},
     omit: String      // optional: the part that is ommitted from rendering: 'type', 'assoc'
   },
 
