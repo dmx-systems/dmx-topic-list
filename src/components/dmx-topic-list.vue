@@ -20,10 +20,10 @@
               Note: the same topic might appear more than once (e.g. in a "what's related" list).
               In order to avoid a key clash we use the loop index. ### FIXME
             -->
-            <dm5-topic-item v-for="(topic, i) in group.topics" :topic="topic" :omit="omit"
+            <dmx-topic-item v-for="(topic, i) in group.topics" :topic="topic" :omit="omit"
               :class="['list-item', {marked: markTopic(topic)}]" :key="i"
               @click.native="topicClick(topic)" @icon-click="iconClick(topic)">
-            </dm5-topic-item>
+            </dmx-topic-item>
           </template>
           <template v-if="isAssocResult">
             <!--
@@ -32,12 +32,12 @@
               on CSS. We need handling of mouseover/out events. With CSS alone the assoc would stay hovered even when
               the mouse cursor actually hovers a player topic.
             -->
-            <dm5-assoc-item v-for="assoc in group.topics" :assoc="assoc" :marker-topic-ids="markerTopicIds"
+            <dmx-assoc-item v-for="assoc in group.topics" :assoc="assoc" :marker-topic-ids="markerTopicIds"
               :class="['list-item', {marked: markAssoc(assoc)}]" :key="assoc.id"
               @mouseover.native="mouseover" @mouseout.native="mouseout"
               @mouseenter.native="mouseenter" @mouseleave.native="mouseleave"
               @click.native="assocClick(assoc)" @topic-click="topicClick" @icon-click="iconClick">
-            </dm5-assoc-item>
+            </dmx-assoc-item>
           </template>
         </div>
       </div>
@@ -219,8 +219,8 @@ export default {
   },
 
   components: {
-    'dm5-topic-item': require('./dm5-topic-item').default,
-    'dm5-assoc-item': require('./dm5-assoc-item').default
+    'dmx-topic-item': require('./dmx-topic-item').default,
+    'dmx-assoc-item': require('./dmx-assoc-item').default
   }
 }
 

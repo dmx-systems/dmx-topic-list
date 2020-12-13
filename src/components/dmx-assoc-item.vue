@@ -1,12 +1,12 @@
 <template>
   <div :class="['dm5-assoc-item', {hover}]">
-    <dm5-topic-item :topic="topic1" :class="['free-item', {marked: markTopic(topic1), match: isMatch(topic1)}]"
+    <dmx-topic-item :topic="topic1" :class="['free-item', {marked: markTopic(topic1), match: isMatch(topic1)}]"
       @click.native.stop="topicClick(topic1)" @icon-click="iconClick(topic1)">
-    </dm5-topic-item>
-    <dm5-assoc-line :assoc="assoc" :show-labels="showLabels"></dm5-assoc-line>
-    <dm5-topic-item :topic="topic2" :class="['free-item', {marked: markTopic(topic2), match: isMatch(topic2)}]"
+    </dmx-topic-item>
+    <dmx-assoc-line :assoc="assoc" :show-labels="showLabels"></dmx-assoc-line>
+    <dmx-topic-item :topic="topic2" :class="['free-item', {marked: markTopic(topic2), match: isMatch(topic2)}]"
       @click.native.stop="topicClick(topic2)" @icon-click="iconClick(topic2)">
-    </dm5-topic-item>
+    </dmx-topic-item>
   </div>
 </template>
 
@@ -62,8 +62,8 @@ export default {
   },
 
   components: {
-    'dm5-topic-item': require('./dm5-topic-item').default,
-    'dm5-assoc-line': require('./dm5-assoc-line').default
+    'dmx-topic-item': require('./dmx-topic-item').default,
+    'dmx-assoc-line': require('./dmx-assoc-line').default
   }
 }
 </script>
