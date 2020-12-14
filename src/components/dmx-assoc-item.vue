@@ -1,5 +1,5 @@
 <template>
-  <div :class="['dm5-assoc-item', {hover}]">
+  <div :class="['dmx-assoc-item', {hover}]">
     <dmx-topic-item :topic="topic1" :class="['free-item', {marked: markTopic(topic1), match: isMatch(topic1)}]"
       @click.native.stop="topicClick(topic1)" @icon-click="iconClick(topic1)">
     </dmx-topic-item>
@@ -69,16 +69,16 @@ export default {
 </script>
 
 <style>
-.dm5-assoc-item {
+.dmx-assoc-item {
   display: flex;
   align-items: center;
 }
 
-.dm5-assoc-item .dm5-topic-item.match {
+.dmx-assoc-item .dmx-topic-item.match {
   background-color: var(--background-color) !important;
 }
 
-.dm5-assoc-item .dm5-assoc-line {
+.dmx-assoc-item .dmx-assoc-line {
   flex: auto;
 }
 </style>

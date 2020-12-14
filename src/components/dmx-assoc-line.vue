@@ -1,5 +1,5 @@
 <template>
-  <div class="dm5-assoc-line" :style="lineStyle">
+  <div class="dmx-assoc-line" :style="lineStyle">
     <div class="aux-node" :style="lineStyle">&nbsp;</div>
     <div class="labels" v-show="showLabels">
       <div class="value label">{{assoc.value || '&nbsp;'}}</div>
@@ -45,7 +45,7 @@ function roleTypeLabel (player) {
 </script>
 
 <style>
-.dm5-assoc-line {
+.dmx-assoc-line {
   display: flex;
   flex-direction: column;
   height: 3px;
@@ -53,12 +53,12 @@ function roleTypeLabel (player) {
   pointer-events: none;
 }
 
-.dm5-assoc-line .value {
+.dmx-assoc-line .value {
   text-align: center;
   margin-top: -24px;
 }
 
-.dm5-assoc-line .aux-node {
+.dmx-assoc-line .aux-node {
   align-self: center;
   width: 6px;
   height: 6px;
@@ -66,12 +66,12 @@ function roleTypeLabel (player) {
   margin-top: -1px;
 }
 
-.dm5-assoc-line .role-types {
+.dmx-assoc-line .role-types {
   display: flex;
   margin-top: 9px;
 }
 
-.dm5-assoc-line .role-types div {
+.dmx-assoc-line .role-types div {
   flex: auto;
   text-align: center;
 }

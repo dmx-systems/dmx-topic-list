@@ -1,5 +1,5 @@
 <template>
-  <div class="dm5-topic-list">
+  <div class="dmx-topic-list">
     <div class="header" v-if="!noSortMenu">
       <div class="list-label label">{{listLabel}}</div>
       <div class="sort-widget" v-if="size">
@@ -231,49 +231,49 @@ const selectFn = {
 }
 
 function setProperty(prop, value, e) {
-  if (e.target.classList.contains('dm5-assoc-item')) {
+  if (e.target.classList.contains('dmx-assoc-item')) {
     e.target.__vue__[prop] = value
   }
 }
 </script>
 
 <style>
-.dm5-topic-list .header {
+.dmx-topic-list .header {
   display: flex;
   align-items: baseline;
 }
 
-.dm5-topic-list .header .list-label {
+.dmx-topic-list .header .list-label {
   flex: auto;
 }
 
-.dm5-topic-list .header .sort-widget {
+.dmx-topic-list .header .sort-widget {
   margin-bottom: 1.6em;
 }
 
-.dm5-topic-list .header .sort-widget .el-select {
+.dmx-topic-list .header .sort-widget .el-select {
   width: 140px;
 }
 
-.dm5-topic-list .header .sort-widget .el-input__inner {
+.dmx-topic-list .header .sort-widget .el-input__inner {
   font-size: var(--label-font-size) !important;
   line-height: 24px;    /* was 28px */
   height: 24px;         /* was 28px */
   color: var(--label-color);
 }
 
-.dm5-topic-list .header .sort-widget .el-select__caret {
+.dmx-topic-list .header .sort-widget .el-select__caret {
   font-size: var(--label-font-size);
   line-height: 24px;    /* was 28px */
 }
 
-.dm5-topic-list .group + .group {
+.dmx-topic-list .group + .group {
   margin-top: 1.6em;
 }
 
 /* principle copy in dm5-comp-def-list.vue */
-.dm5-topic-list .group .dm5-topic-item,
-.dm5-topic-list .group .dm5-assoc-item {
+.dmx-topic-list .group .dmx-topic-item,
+.dmx-topic-list .group .dmx-assoc-item {
   border-bottom: 1px solid var(--border-color);
   border-left:   1px solid var(--border-color);
   border-right:  3px solid var(--border-color);
@@ -282,18 +282,18 @@ function setProperty(prop, value, e) {
   padding: var(--object-item-padding);
 }
 
-.dm5-topic-list .group .free-item,
-.dm5-topic-list .group .list-item:nth-child(1) {
+.dmx-topic-list .group .free-item,
+.dmx-topic-list .group .list-item:nth-child(1) {
   border-top: 1px solid var(--border-color);
 }
 
-.dm5-topic-list .group .dm5-topic-item.marked,
-.dm5-topic-list .group .dm5-assoc-item.marked {
+.dmx-topic-list .group .dmx-topic-item.marked,
+.dmx-topic-list .group .dmx-assoc-item.marked {
   border-right-color: var(--color-topic-icon);
 }
 
-.dm5-topic-list .group .dm5-topic-item:hover,
-.dm5-topic-list .group .dm5-assoc-item.hover {    /* assoc-item hovering is different, see note in template */
+.dmx-topic-list .group .dmx-topic-item:hover,
+.dmx-topic-list .group .dmx-assoc-item.hover {    /* assoc-item hovering is different, see note in template */
   background-color: var(--background-color-darker) !important;
 }
 </style>
