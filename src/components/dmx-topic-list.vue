@@ -51,7 +51,7 @@ import dmx from 'dmx-api'
 export default {
 
   created () {
-    // console.log('dm5-topic-list created', this.topics, this.topics.length)
+    // console.log('dmx-topic-list created', this.topics, this.topics.length)
   },
 
   mixins: [
@@ -64,7 +64,7 @@ export default {
       required: true,       // TODO: don't require?
       validator: topics => topics.every(topic => {
         const ok = topic instanceof dmx.Topic || topic instanceof dmx.Assoc
-        !ok && console.warn('"topics" array passed to dm5-topic-list contains a non-Topic/Assoc element:', topic, '(' +
+        !ok && console.warn('"topics" array passed to dmx-topic-list contains a non-Topic/Assoc element:', topic, '(' +
           topic.constructor.name + ')')
         return ok
       })
@@ -167,7 +167,7 @@ export default {
     },
 
     omit () {
-      // Note: dm5-topic-item expects a String (or undefined)
+      // Note: dmx-topic-item expects a String (or undefined)
       if (!this.topicSort) {
         return this.sortMode_
       }
@@ -271,7 +271,7 @@ function setProperty(prop, value, e) {
   margin-top: 1.6em;
 }
 
-/* principle copy in dm5-comp-def-list.vue */
+/* principle copy in dmx-comp-def-list.vue */
 .dmx-topic-list .group .dmx-topic-item,
 .dmx-topic-list .group .dmx-assoc-item {
   border-bottom: 1px solid var(--border-color);

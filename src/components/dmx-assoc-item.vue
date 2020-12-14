@@ -16,7 +16,7 @@ import dmx from 'dmx-api'
 export default {
 
   created () {
-    // console.log('dm5-assoc-item created', this.topic1, this.topic2)
+    // console.log('dmx-assoc-item created', this.topic1, this.topic2)
   },
 
   mixins: [
@@ -29,8 +29,8 @@ export default {
 
   data () {
     return {
-      hover: false,       // set by parent component, see setProperty() in dm5-topic-list.vue
-      showLabels: false   // set by parent component, see setProperty() in dm5-topic-list.vue
+      hover: false,       // set by parent component, see setProperty() in dmx-topic-list.vue
+      showLabels: false   // set by parent component, see setProperty() in dmx-topic-list.vue
     }
   },
 

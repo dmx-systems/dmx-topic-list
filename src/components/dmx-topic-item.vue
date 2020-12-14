@@ -18,7 +18,7 @@ import dmx from 'dmx-api'
 export default {
 
   mounted () {
-    // console.log('dm5-topic-item mouted', this.topic)
+    // console.log('dmx-topic-item mouted', this.topic)
     if (this.isHtml) {
       this.$el.querySelectorAll('video.ql-video').forEach(video => {
         video.addEventListener('click', e => {
