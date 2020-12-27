@@ -12,7 +12,7 @@
       </div>
     </div>
     <template v-if="size">
-      <div class="group" v-for="group in groups">
+      <div class="group" v-for="group in groups" :key="group.title">
         <div class="field-label" v-if="!topicSort">{{group.title}} ({{group.topics.length}})</div>
         <div>
           <template v-if="!isAssocResult">
@@ -230,7 +230,7 @@ const selectFn = {
   assoc: topic => topic.assoc.typeName
 }
 
-function setProperty(prop, value, e) {
+function setProperty (prop, value, e) {
   if (e.target.classList.contains('dmx-assoc-item')) {
     e.target.__vue__[prop] = value
   }
