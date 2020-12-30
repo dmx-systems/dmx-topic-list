@@ -24,6 +24,22 @@
 
 ## Version History
 
+**2.0** -- Dec 30, 2020
+
+* BREAKING CHANGES
+    * Various `dm5` -> `dmx` renamings
+    * Rename component attribute `marker-topic-ids` (was `marker-ids`)
+* Feature: **Association Lists**
+    * Add `marker-assoc-ids` component attribute
+    * Emit `assoc-click` event
+* Improvements:
+    * Add `topics-label` component attribute
+* Fixes:
+    * Video controls (in HTML values) don't emit `topic-click`
+* Chore:
+    * Adapt URLs to `github.com/dmx-systems`
+    * Code run through `eslint`
+
 **1.0.2** -- Oct 27, 2020
 
 * Improvements:
@@ -112,4 +128,4 @@
 
 ------------
 Jörg Richter  
-Oct 27, 2020
+Dec 30, 2020
