@@ -176,7 +176,6 @@ export default {
 
   watch: {
     isAssocResult (val) {
-      console.log('isAssocResult', val)
       if (val) {
         this.sortMode_ = 'type'
       }
