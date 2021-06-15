@@ -24,6 +24,11 @@
 
 ## Version History
 
+**2.0.1** -- Jun 15, 2021
+
+* Chore:
+    * Remove debug log
+
 **2.0** -- Dec 30, 2020
 
 * BREAKING CHANGES
@@ -125,7 +130,3 @@
 
 * Factored out as a standalone component from:  
   https://github.com/jri/dm5-detail-panel
-
-------------
-Jörg Richter  
-Dec 30, 2020
