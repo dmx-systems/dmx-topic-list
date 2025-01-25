@@ -4,7 +4,7 @@
       <div class="list-label label">{{listLabel}}</div>
       <div class="sort-widget" v-if="size">
         <span class="label">sort by</span>
-        <el-select v-model="sortMode_" @input="sortChange">
+        <el-select v-model="sortMode_" size="small" @input="sortChange">
           <el-option label="Topic" value="topic" v-if="!isAssocResult"></el-option>
           <el-option :label="typeSortLabel" value="type"></el-option>
           <el-option label="Association Type" value="assoc" v-if="isRelTopics"></el-option>
@@ -240,30 +240,20 @@ function setProperty (prop, value, e) {
 .dmx-topic-list .header {
   display: flex;
   align-items: baseline;
+  margin-bottom: 1.6em;
 }
 
 .dmx-topic-list .header .list-label {
   flex: auto;
 }
 
-.dmx-topic-list .header .sort-widget {
-  margin-bottom: 1.6em;
-}
-
 .dmx-topic-list .header .sort-widget .el-select {
   width: 140px;
+  margin-left: 5px;
 }
 
-.dmx-topic-list .header .sort-widget .el-input__inner {
-  font-size: var(--label-font-size) !important;
-  line-height: 24px;    /* was 28px */
-  height: 24px;         /* was 28px */
+.dmx-topic-list .header .sort-widget .el-select .el-select__placeholder {
   color: var(--label-color);
-}
-
-.dmx-topic-list .header .sort-widget .el-select__caret {
-  font-size: var(--label-font-size);
-  line-height: 24px;    /* was 28px */
 }
 
 .dmx-topic-list .group + .group {
